@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue.js - Computed Properties and Watchers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <script src="../node_modules/lodash/lodash.js"></script>
+</head>
+
+<body>
+    <div id="watch-example">
+        <div>
+            <p>Ask yes/no question: <input type="text" v-model="question" /></p>
+        </div>
+        <div>
+            <p>{{ answer }}</p>
+            <p> <img v-bind:src="answerGif" /></p>
+        </div>
+    </div>
+
+    <script>
+        const watchExampleVM = new Vue({
+            el: '#watch-example',
+            data: {
+                question: '',
+                answer: 'I cannot give you an answer until you ask a question!',
+                answerGif: ''
+            },
+            watch: {
+                question: function (newQuestion, oldQuestion) {
+                    this.answer = 'Waiting for you to stop typing...';
+                    this.debouncedGetAnswer();
+                }
+            },
+            created: function () {
+                this.debouncedGetAnswer = _.debounce(this.getAnswer, 500);
+            },
+            methods: {
+                getAnswer: function () {
+                    if (this.question.indexOf('?') === -1) {
+                        this.answer = 'Questions usually contain a question mark. ;-)';
+                        return;
+                    }
+
+                    this.answer = 'Thinking...';
+                    var vm = this;
+                    vm.answerGif = '';
+                    fetch('https://yesno.wtf/api')
+                        .then(response => response.json())
+                        .then(function (json) {
+                            vm.answer = _.capitalize(json.answer);
+                            vm.answerGif = json.image;
+                        })
+                        .catch(function (error) {
+                            vm.answer = `Error! Could not reach the API. ${error}`
+                        });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
