@@ -1,0 +1,23 @@
+{
+  "name": "bowozer.github.io",
+  "version": "0.0.1",
+  "description": "",
+  "main": "''",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bowozer/bowozer.github.io.git"
+  },
+  "author": "bowozer@github",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bowozer/bowozer.github.io/issues"
+  },
+  "homepage": "https://github.com/bowozer/bowozer.github.io#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "vue": "^2.5.17"
+  }
+}
