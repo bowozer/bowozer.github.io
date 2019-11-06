@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<title>iPhone input focus()</title>
+	<script type="text/javascript" src="zepto.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+	
+	<style type="text/css">
+		input:focus{ background:green; }
+	</style>
+	
+</head>
+
+<body>
+	
+	<h3>When selecting "Search" in the navigation box the input should be focussed and the keyboard should slide-in</h3>
+	
+	<select class="wr-dropdown">
+		<option selected="" value="Navigation">Navigation</option>
+		<option value="/search">Seach</option>
+		<option value="/why">Why</option>
+		<option value="/not">Not</option>
+	</select>
+	
+	<br/><br/>
+
+	<div class="mobile-search">
+		<form class="search-form" action="" method="get">
+	    <fieldset>
+			<div class="input-inside-label">
+				<label for="search-box" class="">Search this site …</label>
+				<input type="text" name="search-box" value="" class="">
+			</div>
+	    </fieldset>
+		</form>
+	</div>
+	
+</body>
+</html>
